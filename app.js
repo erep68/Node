@@ -4,18 +4,17 @@ let express = require('express'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    Article = require('./models/article');
+    mongoose = require('mongoose');
 
-mongoose.connect('mongoose://localhost/nodekb');
+mongoose.connect('mongodb://localhost/nodekb');
 let db = mongoose.connection;
 
 db.once('open', () => {
   console.log('Conectado a MongoDB');
-})
+});
 db.on('error', (err) => {
   console.log(err);
-})
+});
 
 let index = require('./routes/index'),
     users = require('./routes/users');
